@@ -1,0 +1,9 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/spam-trainer-image', '-f', 'Dockerfile.train', '.' ]
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/spam-trainer-notebook', '-f', 'Dockerfile', '.' ]
+  after: ['-']
+images:
+- 'gcr.io/$PROJECT_ID/spam-trainer-image'
+- 'gcr.io/$PROJECT_ID/spam-trainer-notebook'
