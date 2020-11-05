@@ -1,6 +1,10 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/spam-trainer-image', '-f', 'Dockerfile.train', '.' ]
+- name: gcr.io/kaniko-project/executor
+  args:
+  - --destination=gcr.io/$PROJECT_ID/spam-trainer-image
+  - --cache=true
+  - --cache-ttl=6h
+  - --dockerfile=Dockerfile.train
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/spam-trainer-notebook', '-f', 'Dockerfile', '.' ]
   waitFor: ['-']
