@@ -1,9 +1,9 @@
-numpy
-scipy
+numpy>=1.15
+scipy>=1.2
 matplotlib
 ipython
 jupyter
-pandas
+pandas>=0.23
 sympy
 nose
 statsmodels==0.10.1
